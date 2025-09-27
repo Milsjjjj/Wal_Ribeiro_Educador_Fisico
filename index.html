@@ -39,7 +39,7 @@
       <div class="bar"></div>
     </div>
     <div class="brand">Wal - Educador Fisico</div>
-    <img src="/assets/logo.png" alt="Logo" id="headerLogo" style="height:46px; width:auto; display:block; margin-left: auto;" />
+  <img src="assets/logo.png" alt="Logo" id="headerLogo" style="height:46px; width:auto; display:block; margin-left: auto;" />
   </header>
 
   <nav class="sidebar" id="sidebar" aria-hidden="true">
@@ -129,8 +129,8 @@
         return;
       }
 
-      // Caso padrão: carregar qualquer outra página no iframe (mesma tela)
-  if(pageFrame){ stopAuto(); slider.style.display='none'; pageFrame.style.display=''; pageFrame.src = (t && t.toString && t.toString().startsWith('/') ? t : ('/' + t)); }
+    // Caso padrão: carregar qualquer outra página no iframe (mesma tela)
+  if(pageFrame){ stopAuto(); slider.style.display='none'; pageFrame.style.display=''; pageFrame.src = t; }
       else { window.open(t, '_blank'); }
       sidebar.classList.remove('open'); sidebar.setAttribute('aria-hidden','true');
     }));
@@ -168,11 +168,11 @@
       }
       // ex: src/pages/home.html
       try{
-        if(pageFrame){
+          if(pageFrame){
           stopAuto();
           slider.style.display = 'none';
           pageFrame.style.display = '';
-          pageFrame.src = (h && h.toString && h.toString().startsWith('/') ? h : ('/' + h));
+          pageFrame.src = h;
         } else {
           // fallback
           window.location.href = h;
@@ -201,7 +201,7 @@
             pageFrame.onload = function(){
               try{ pageFrame.contentWindow.postMessage({ type: 'refreshClients' }, '*'); }catch(e){ /* ignore */ }
             };
-            pageFrame.src = (msg.page && msg.page.toString && msg.page.toString().startsWith('/') ? msg.page : ('/' + msg.page));
+            pageFrame.src = msg.page;
           }
         }
         // Quando o iframe enviar a lista atualizada de clientes
